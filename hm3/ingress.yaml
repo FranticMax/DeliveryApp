@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: health-check-ingress
+    annotations:
+      nginx.ingress.kubernetes.io/use-regex: "true"
+      nginx.ingress.kubernetes.io/rewrite-target: /$3
+spec:
+    ingressClassName: nginx
+    rules:
+      - host: arch.homework
+        http:
+          paths:
+            - path: /()()(health)
+              pathType: ImplementationSpecific
+              backend:
+                service:
+                  name: health-check-service
+                  port:
+                    number: 8000
+            - path: /otusapp(/|$)(.*/)(health)
+              pathType: ImplementationSpecific
+              backend:
+                service:
+                  name: health-check-service
+                  port:
+                    number: 8000
