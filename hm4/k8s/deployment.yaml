@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service-deploy
+spec:
+  selector:
+    matchLabels:
+      app: user-service
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: user-service
+    spec:
+      containers:
+        - name: user-service
+          image: franticmax/user-service:latest
+          ports:
+            - containerPort: 8000
+#          env:
+#            - name: ENV
+#              valueFrom:
+#                configMapKeyRef:
+#                  name: user-service-cmap
+#                  key: env
