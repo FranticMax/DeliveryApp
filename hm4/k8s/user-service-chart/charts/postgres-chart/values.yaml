@@ -1,0 +1,5 @@
+postgres:
+  name: postgres
+  replicas: 1
+  image: postgres:14
+  port: 5432

@@ -7,5 +7,5 @@ import (
 
 func main() {
 	db.InitPostgresDB()
-	router.InitRouter().Run()
+	router.InitRouter().Run(":8080")
 }

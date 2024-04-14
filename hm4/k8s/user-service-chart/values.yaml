@@ -1,0 +1,8 @@
+app:
+  name: user-service
+  host: arch.homework
+  port: 8080
+  replicas: 2
+  postgres:
+    name: postgres
+env: prod

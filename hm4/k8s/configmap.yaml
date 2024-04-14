@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: user-service-cmap
+  name: user-service-chart-cmap
 data:
   # property-like keys; each key maps to a simple value
   env: "prod"

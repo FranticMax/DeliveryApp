@@ -3,7 +3,7 @@ FROM golang:1.21.0-alpine3.17
 WORKDIR /app
 COPY . .
 
-RUN go mod tidy && go build -o user-service .
+RUN go mod tidy && go build -o user-service-chart .
 
 EXPOSE 8000
 CMD ["/app/user-service"]

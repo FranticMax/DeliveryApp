@@ -1,25 +1,51 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-service-deploy
+  name: user-service-chart-deploy
 spec:
   selector:
     matchLabels:
-      app: user-service
+      app: user-service-chart
   replicas: 2
   template:
     metadata:
       labels:
-        app: user-service
+        app: user-service-chart
     spec:
       containers:
-        - name: user-service
-          image: franticmax/user-service:latest
+        - name: user
+          image: franticmax/user-service-chart:latest
           ports:
-            - containerPort: 8000
-#          env:
-#            - name: ENV
-#              valueFrom:
-#                configMapKeyRef:
-#                  name: user-service-cmap
-#                  key: env
+            - containerPort: 8080
+          env:
+            - name: ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: user-service-chart-cmap
+                  key: env
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: user-service-chart-secrets
+                  key: POSTGRES_PASSWORD
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: user-service-chart-secrets
+                  key: POSTGRES_DB
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: user-service-chart-secrets
+                  key: POSTGRES_USER
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: user-service-chart-secrets
+                  key: POSTGRES_PORT
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: user-service-chart-secrets
+                  key: POSTGRES_HOST
+

@@ -2,7 +2,7 @@ version: "3"
 
 services:
   user-service:
-    container_name: user-service
+    container_name: user-service-chart
     build:
       dockerfile: Dockerfile
       context: ./user-service
